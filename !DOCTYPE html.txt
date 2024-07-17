@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    /* Custom styles for the student dashboard */
+    .dashboard-header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .dashboard-content {
+        margin-top: 20px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="dashboard-header">
+        <h2>Welcome, Student!</h2>
+    </div>
+    <div class="dashboard-content">
+        <div class="card">
+            <div class="card-header">
+                Courses
+            </div>
+            <div class="card-body">
+                <p>You are enrolled in:</p>
+                <ul>
+                    <li>Data Science</li>
+                    <li>Software Testing</li>
+                    <li>Web Development</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Grades
+            </div>
+            <div class="card-body">
+                <p>Your current grades:</p>
+                <ul>
+                    <li>Data Science: A</li>
+                    <li>Software Testing: B+</li>
+                    <li>Web Development: A-</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Created</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Exam Created</h2>
+    <div id="examDetails"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const examData = localStorage.getItem('examData');
+        if (examData) {
+            const parsedExamData = JSON.parse(examData);
+            const examDetailsDiv = document.getElementById('examDetails');
+            examDetailsDiv.innerHTML = `
+                <p><strong>Exam Title:</strong> ${parsedExamData.title}</p>
+                <p><strong>Exam Duration:</strong> ${parsedExamData.duration} minutes</p>
+                <p><strong>Questions:</strong></p>
+                <ul>
+                    ${parsedExamData.questions.map(question => `<li>${question}</li>`).join('')}
+                </ul>
+            `;
+            // Simulate exam creation (mock API call)
+            setTimeout(function() {
+                examDetailsDiv.innerHTML += '<p class="text-success">Exam created successfully!</p>';
+                localStorage.removeItem('examData'); // Clear examData from localStorage
+            }, 2000); // Simulating a 2-second delay
+        } else {
+            // Redirect to the exam creation page if examData is not available
+            window.location.href = 'create_exam.html'; // Change the URL as needed
+        }
+    });
+</script>
+</body>
+</html>

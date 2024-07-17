@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parallax Effect</title>
+<style>
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+/* Style for the navbar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #4caf8c;
+}
+
+.active {
+  background-color: rgb(0, 255, 106);
+}
+
+/* Style for the parallax container */
+.parallax-container {
+  background-image: url('purple.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px; /* Adjust as needed */
+  position: relative;
+}
+
+/* Style for the parallax caption */
+.parallax-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+/* Style for the content below the parallax */
+.content {
+  padding: 50px;
+  background-color: #f1f1f1;
+}
+
+/* Style for the footer */
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+}
+
+/* Style for the footer text */
+.footer p {
+  margin: 0;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #111;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <a href="homepage.html" class="active">HOME</a>
+  <a href="loginexam.html">USER_LOGIN</a>
+  <a href="registration.html">REGISTRATION</a>
+  <a href="adminlogin.html"> ADMIN_LOGIN</a>
+  <a href="faqs.html">FAQS</a>
+  <a href="facultylogin.html">FACULTY</a>
+</div>
+
+<!-- Parallax Container -->
+<div class="parallax-container">
+  <div class="parallax-caption">
+    <h1>HOME PAGE</h1>
+  </div>
+</div>
+
+<!-- React Component -->
+<div id="root"></div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; 2024 Your Company. All rights reserved.</p>
+</div>
+
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  const App = () => (
+    <div className="content">
+      <h3>Welcome to our Online Examination System</h3>
+      <p>Welcome to our Online Examination System, where convenience meets excellence in assessment! Our platform is meticulously designed to serve the needs of educators, students, and institutions alike. With our advanced features and user-friendly interface, conducting exams and evaluating performance has never been more efficient.</p>
+    </div>
+  );
+
+  ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+
+</body>
+</html

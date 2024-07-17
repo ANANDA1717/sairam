@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSA MCQ Quiz</title>
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>DSA Multiple Choice Quiz</h2>
+    <form id="dsaQuizForm">
+        <!-- Previous questions... -->
+        <div class="form-group">
+            <label for="question8">8. Which of the following is not a type of tree?</label><br>
+            <input type="radio" id="q8a" name="question8" value="a">
+            <label for="q8a">A. AVL Tree</label><br>
+            <input type="radio" id="q8b" name="question8" value="b">
+            <label for="q8b">B. Red-Black Tree</label><br>
+            <input type="radio" id="q8c" name="question8" value="c">
+            <label for="q8c">C. Binary Tree</label><br>
+            <input type="radio" id="q8d" name="question8" value="d">
+            <label for="q8d">D. Heap Tree</label><br>
+        </div>
+        <div class="form-group">
+            <label for="question9">9. Which algorithm is used to find the shortest path in a weighted graph?</label><br>
+            <input type="radio" id="q9a" name="question9" value="a">
+            <label for="q9a">A. Breadth-First Search (BFS)</label><br>
+            <input type="radio" id="q9b" name="question9" value="b">
+            <label for="q9b">B. Depth-First Search (DFS)</label><br>
+            <input type="radio" id="q9c" name="question9" value="c">
+            <label for="q9c">C. Dijkstra's Algorithm</label><br>
+            <input type="radio" id="q9d" name="question9" value="d">
+            <label for="q9d">D. Prim's Algorithm</label><br>
+        </div>
+        <div class="form-group">
+            <label for="question10">10. What is the time complexity of Quicksort in the worst case?</label><br>
+            <input type="radio" id="q10a" name="question10" value="a">
+            <label for="q10a">A. O(n)</label><br>
+            <input type="radio" id="q10b" name="question10" value="b">
+            <label for="q10b">B. O(n log n)</label><br>
+            <input type="radio" id="q10c" name="question10" value="c">
+            <label for="q10c">C. O(n^2)</label><br>
+            <input type="radio" id="q10d" name="question10" value="d">
+            <label for="q10d">D. O(1)</label><br>
+        </div>
+        <div class="form-group">
+            <label for="question11">11. Which data structure is best suited for implementing a queue?</label><br>
+            <input type="radio" id="q11a" name="question11" value="a">
+            <label for="q11a">A. Linked List</label><br>
+            <input type="radio" id="q11b" name="question11" value="b">
+            <label for="q11b">B. Stack</label><br>
+            <input type="radio" id="q11c" name="question11" value="c">
+            <label for="q11c">C. Array</label><br>
+            <input type="radio" id="q11d" name="question11" value="d">
+            <label for="q11d">D. Tree</label><br>
+        </div>
+        <div class="form-group">
+            <label for="question12">12. Which of the following is not a searching algorithm?</label><br>
+            <input type="radio" id="q12a" name="question12" value="a">
+            <label for="q12a">A. Binary Search</label><br>
+            <input type="radio" id="q12b" name="question12" value="b">
+            <label for="q12b">B. Linear Search</label><br>
+            <input type="radio" id="q12c" name="question12" value="c">
+            <label for="q12c">C. Bubble Sort</label><br>
+            <input type="radio" id="q12d" name="question12" value="d">
+            <label for="q12d">D. Interpolation Search</label><br>
+        </div>
+        <div class="form-group">
+            <label for="question13">13. What is the purpose of a binary heap?</label><br>
+            <input type="radio" id="q13a" name="question13" value="a">
+            <label for="q13a">A. Implementing priority queues</label><br>
+            <input type="radio" id="q13b" name="question13" value="b">
+            <label for="q13b">B. Sorting elements</label><br>
+            <input type="radio" id="q13c" name="question13" value="c">
+            <label for="q13c">C. Storing elements in a linked list</label><br>
+            <input type="radio" id="q13d" name="question13" value="d">
+            <label for="q13d">D. Hashing elements</label><br>
+        </div>
+        <div class="form-group">
+            <label for="question14">14. Which of the following is not a graph traversal algorithm?</label><br>
+            <input type="radio" id="q14a" name="question14" value="a">
+            <label for="q14a">A. Breadth-First Search (BFS)</label><br>
+            <input type="radio" id="q14b" name="question14" value="b">
+            <label for="q14b">B. Depth-First Search (DFS)</label><br>
+            <input type="radio" id="q14c" name="question14" value="c">
+            <label for="q14c">C. Dijkstra's Algorithm</label><br>
+            <input type="radio" id="q14d" name="question14" value="d">
+            <label for="q14d">D. Insertion Sort</label><br>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary ml-2">Reset</button>
+    </form>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // JavaScript to handle form submission
+    $('#dsaQuizForm').submit(function(e) {
+        e.preventDefault(); // Prevent form submission
+        // Collect selected answers
+        let answers = {};
+        $('input[type=radio]:checked').each(function() {
+            answers[$(this).attr('name')] = $(this).val();
+        });
+        // Show answers in console (you can modify this part as needed)
+        console.log('Submitted Answers:', answers);
+        // You can add logic here to grade the quiz and display results
+    });
+
+    // JavaScript to handle form reset
+    $('#dsaQuizForm').on('reset', function() {
+        // Clear selected answers
+        $('input[type=radio]:checked').prop('checked', false);
+    });
+</script>
+</body>
+</html>

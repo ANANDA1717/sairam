@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+            body {
+            text-align: center;
+            background-image: url("floral.jpg");
+        }
+
+        .container {
+            box-sizing: border-box;
+            border: 3px solid white;
+            width: 700px;
+            height: 500px;
+            text-align: center;
+            left: 25%;
+            position: absolute;
+            backdrop-filter: blur(8px) brightness(127%);
+            box-shadow: 0 0 10px white;
+            z-index: 1;
+            top: 17%;
+        }
+
+        form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 60%;
+            padding: 8px;
+            margin-bottom: 12px;
+            background: transparent;
+            border: 3px solid rgba(255, 255, 255, 0.774);
+            border-radius: 5px;
+            color: white; /* Text color */
+        }
+
+        input[type="text"]:hover,
+        input[type="password"]:hover {
+            width: 70%;
+            padding: 8px;
+            margin-bottom: 12px;
+            background: transparent;
+            border: 3px solid rgba(255, 255, 255, 0.774);
+            border-radius: 5px;
+            box-shadow: 0 0 10px white;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border: 3px solid rgba(255, 255, 255, 0.774); /* Remove the border on focus */
+            box-shadow: 0 0 10px white; /* Add a box shadow on focus */
+            outline: none;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: white;
+        }
+
+        h1 {
+            color: white;
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            width: 40%;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 17px;
+            margin-left: 15px;
+            padding: 15px;
+        }
+
+        input[type="submit"]:hover {
+            width: 40%;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 17px;
+            margin-left: 15px;
+            padding: 15px;
+            box-shadow: 0 0 10px white;
+        }
+.fa-input::placeholder {
+    color: white;
+    padding-left: 1em; /* Adjust as needed for icon alignment */
+}
+
+.fa-input {
+    font-family: 'Font Awesome 5 Free'; /* Specify Font Awesome font family */
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="loginForm">
+            <h1>FACULTY LOGIN</h1>
+            <input type="text" id="uname" placeholder="Enter Username">
+            <input type="password" id="upassword" placeholder="Enter Password">
+            <input type="button" value="Submit" onclick="authenticate()">
+        </form>
+    </div>
+
+    <script>
+        function authenticate() {
+            // Get the username and password from the form
+            var username = document.getElementById('uname').value;
+            var password = document.getElementById('upassword').value;
+
+            // Perform basic validation (you can add more validation as needed)
+            if (username === '' || password === '') {
+                alert('Please enter username and password.');
+                return;
+            }
+
+            // Check username and password (replace with your authentication logic)
+            if (username === 'faculty11' && password === 'password111') {
+                alert('Login successful.');
+                // Redirect to another page
+                window.location.href = 'facultydashboardd.html';
+            } else {
+                alert('Incorrect login credentials.');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subject Performance Analysis</title>
+<!-- Include Chart.js and Bootstrap CSS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    canvas {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Subject Performance Analysis</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="performancePieChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="attendancePieChart"></canvas>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="studentsPresent">Students Present:</label>
+                <input type="number" id="studentsPresent" class="form-control" placeholder="Enter number of students present" required>
+            </div>
+            <button type="button" onclick="updateChart()" class="btn btn-primary">Update Charts</button>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    let passPercentage = 70; // Change these values as needed
+    let failPercentage = 10;
+    let presentStudents = 80;
+    let absentStudents = 20;
+
+    // Function to create pie chart
+    function createPieChart(ctx, data, title) {
+        return new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(data),
+                datasets: [{
+                    label: title,
+                    data: Object.values(data),
+                    backgroundColor: ['#28a745', '#ffc107', '#dc3545'], // Green for Pass, Yellow for Average, Red for Fail
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: title,
+                },
+                legend: {
+                    position: 'bottom',
+                },
+            }
+        });
+    }
+
+    // Initialize pie charts
+    document.addEventListener('DOMContentLoaded', function () {
+        const performanceCtx = document.getElementById('performancePieChart').getContext('2d');
+        const performanceChart = createPieChart(performanceCtx, { 'Pass': passPercentage, 'Average': 100 - passPercentage - failPercentage, 'Fail': failPercentage }, 'Performance Analysis');
+
+        const attendanceCtx = document.getElementById('attendancePieChart').getContext('2d');
+        const attendanceChart = createPieChart(attendanceCtx, { 'Present': presentStudents, 'Absent': absentStudents }, 'Attendance Analysis');
+    });
+
+    // Update charts with new data
+    function updateChart() {
+        const studentsPresent = parseInt(document.getElementById('studentsPresent').value);
+        const studentsAbsent = presentStudents - studentsPresent;
+        const attendanceChart = Chart.getChart('attendancePieChart');
+        attendanceChart.data.datasets[0].data = [studentsPresent, studentsAbsent];
+        attendanceChart.update();
+    }
+</script>
+</body>
+</html>

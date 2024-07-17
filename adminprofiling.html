@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Profile Page</title>
+<!-- Include Bootstrap CSS for styling (optional) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Include Font Awesome for icons (optional) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<style>
+    /* Custom styles for the profile page */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .profile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .profile-header h1 {
+        margin-left: 10px;
+        font-size: 24px;
+    }
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .change-photo {
+        margin-left: 10px;
+        cursor: pointer;
+        color: #007bff;
+    }
+    .upload-input {
+        display: none;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: bold;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .updated-details {
+        margin-top: 20px;
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="profile-header">
+        <div class="profile-picture" id="profilePicture">
+            <i class="fas fa-user fa-4x"></i>
+        </div>
+        <h1>Admin Profile</h1>
+        <div class="change-photo" id="changePhoto">
+            <i class="fas fa-camera"></i> Change Photo
+            <input type="file" class="upload-input" id="uploadInput">
+        </div>
+    </div>
+    <div id="userInfo">
+        <form id="adminDetailsForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="Admin123" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="admin@example.com" readonly>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" value="123-456-7890">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3">123 Admin Street, City, Country</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Details</button>
+        </form>
+    </div>
+    <div class="updated-details" id="updatedDetails"></div>
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Include Font Awesome JS for icons (optional) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script>
+    // JavaScript to handle profile picture change
+    const profilePicture = document.getElementById('profilePicture');
+    const changePhoto = document.getElementById('changePhoto');
+    const uploadInput = document.getElementById('uploadInput');
+
+    changePhoto.addEventListener('click', () => {
+        uploadInput.click(); // Trigger file input click
+    });
+
+    uploadInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+            profilePicture.innerHTML = `<img src="${reader.result}" alt="Profile Picture">`;
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // JavaScript to handle form submission
+    const adminDetailsForm = document.getElementById('adminDetailsForm');
+    const updatedDetails = document.getElementById('updatedDetails');
+
+    adminDetailsForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent form submission
+        // Collect admin details from the form
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        // Update the admin details in the UI
+        updatedDetails.innerHTML = `
+            <p><strong>Username:</strong> ${username}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone Number:</strong> ${phone}</p>
+            <p><strong>Address:</strong> ${address}</p>
+        `;
+    });
+</script>
+</body>
+</html>

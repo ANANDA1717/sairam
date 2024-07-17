@@ -1,0 +1,7 @@
+CREATE TABLE `examination`.`facultylogin` (`fid` INT NOT NULL AUTO_INCREMENT , `fname` TEXT NOT NULL , `fpassword` TEXT NOT NULL , PRIMARY KEY (), UNIQUE ()) ENGINE = InnoDB
+CREATE TABLE `examination`.`adminlogin` (`aid` INT NOT NULL AUTO_INCREMENT , `aname` TEXT NOT NULL , `apassword` TEXT NOT NULL , PRIMARY KEY (`apassword`), UNIQUE (`apassword`)) ENGINE = InnoDB;
+CREATE TABLE `examination`.`test` (`tid` INT NOT NULL AUTO_INCREMENT , `tname` INT NOT NULL , `tscore` INT NOT NULL , `tpassingmarks` INT NOT NULL , `cid` INT NOT NULL , PRIMARY KEY (`tid`)) ENGINE = InnoDB;
+CREATE TABLE `examination`.`facultydetails` (`fid` INT NOT NULL AUTO_INCREMENT , `fname` TEXT NOT NULL , `fdept` TEXT NOT NULL , `fmobile` TEXT NOT NULL , `femail` TEXT NOT NULL , PRIMARY KEY (`fid`)) ENGINE = InnoDB
+CREATE TABLE `examination`.`feedback` (`fid` INT NOT NULL AUTO_INCREMENT , `femail` TEXT NOT NULL , `fsubject` TEXT NOT NULL , PRIMARY KEY (`fid`)) ENGINE = InnoDB;
+CREATE TABLE `examination`.`uprofileuprofile` (`uphoto` TEXT NOT NULL , `uname` TEXT NOT NULL , `uemail` TEXT NOT NULL , `umobile` TEXT NOT NULL , `uid` INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (`uid`)) ENGINE = InnoDB;
+CREATE TABLE `examination`.`examination` (`eid` INT NOT NULL AUTO_INCREMENT , `equestion` TEXT NOT NULL , `option1` INT NOT NULL , `option2` INT NOT NULL , `option3` INT NOT NULL , `option4` INT NOT NULL , `answer` INT NOT NULL , `tid` INT NOT NULL , PRIMARY KEY (`eid`)) ENGINE = InnoDB;

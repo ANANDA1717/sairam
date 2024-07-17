@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Courses</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: #210f6c;
+        color: #fff;
+        padding: 20px;
+        position: fixed;
+        height: 100%;
+        overflow-y: auto;
+        left: 0;
+    }
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #1a0d50;
+    }
+
+    .main-content {
+        width: calc(100% - 250px);
+        padding: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    h1, h3 {
+        text-align: center;
+    }
+
+    .container {
+        width: 70%;
+        overflow-x: auto;
+        margin-left: auto; /* Shifts the container to the right */
+    }
+
+    table {
+        width: 90%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        margin-right: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .btn-update {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .btn-remove {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .btn-add {
+        margin-bottom: 10px;
+        background-color: #2196F3;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<div class="sidebar">
+    <a href="#">Dashboard</a>
+    <a href="#">Courses</a>
+    <a href="#">Students</a>
+</div>
+<div class="main-content">
+    <div class="container">
+        <h1>COURSE DETAILS</h1>
+        <button class="btn btn-add" onclick="addCourse()">Add Course</button>
+        <h3>Course List</h3>
+        <table id="courseTable">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Course 1</td>
+                    <td>Active</td>
+                    <td>
+                        <button class="btn btn-update" onclick="updateCourse(1)">Update</button>
+                        <button class="btn btn-remove" onclick="removeCourse(1)">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course 2</td>
+                    <td>Inactive</td>
+                    <td>
+                        <button class="btn btn-update" onclick="updateCourse(2)">Update</button>
+                        <button class="btn btn-remove" onclick="removeCourse(2)">Remove</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function addCourse() {
+        var courseName = prompt("Enter the name of the new course:");
+        if (courseName !== null && courseName.trim() !== '') {
+            var table = document.getElementById('courseTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            cell1.innerHTML = courseName;
+            cell2.innerHTML = 'Active';
+            cell3.innerHTML = '<button class="btn btn-update" onclick="updateCourse(' + table.rows.length + ')">Update</button>' +
+                              '<button class="btn btn-remove" onclick="removeCourse(' + table.rows.length + ')">Remove</button>';
+            alert('Course added successfully.');
+        } else {
+            alert('Please enter a valid course name.');
+        }
+    }
+
+    function updateCourse(courseId) {
+        var courseName = document.getElementById('courseTable').rows[courseId].cells[0].innerHTML;
+        var status = document.getElementById('courseTable').rows[courseId].cells[1].innerHTML;
+        var newStatus = prompt("Enter new status for " + courseName + ":", status);
+        if (newStatus !== null) {
+            document.getElementById('courseTable').rows[courseId].cells[1].innerHTML = newStatus;
+            alert('Course status updated successfully.');
+        }
+    }
+
+    function removeCourse(courseId) {
+        var confirmation = confirm("Are you sure you want to remove this course?");
+        if (confirmation) {
+            document.getElementById('courseTable').deleteRow(courseId);
+            alert('Course removed successfully.');
+        }
+    }
+</script>
+</body>
+</html>

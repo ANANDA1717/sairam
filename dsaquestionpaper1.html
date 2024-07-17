@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSA MCQ Quiz</title>
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="col-md-6 text-right"> <!-- Right-aligned column for buttons -->
+        <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
+        <button type="button" class="btn btn-primary ml-2" id="startVideoBtn" onclick="startRecording()">Start Video</button>
+    </div>
+    <h2>DSA Multiple Choice Quiz</h2>
+    <!-- Quiz questions form (same as before) -->
+    <form id="dsaQuizForm">
+        ...<div class="form-group">
+            <label for="question1">1. What is a stack in DSA?</label><br>
+            <input type="radio" id="q1a" name="question1" value="a">
+            <label for="q1a">A. A linear data structure with FIFO access</label><br>
+            <input type="radio" id="q1b" name="question1" value="b">
+            <label for="q1b">B. A linear data structure with LIFO access</label><br>
+            <input type="radio" id="q1c" name="question1" value="c">
+            <label for="q1c">C. A non-linear data structure</label><br>
+            <input type="radio" id="q1d" name="question1" value="d">
+            <label for="q1d">D. A data structure for sorting</label><br>
+            <span id="answer1" class="text-success font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+            <label for="question2">2. What is the time complexity of linear search?</label><br>
+            <input type="radio" id="q2a" name="question2" value="a">
+            <label for="q2a">A. O(n)</label><br>
+            <input type="radio" id="q2b" name="question2" value="b">
+            <label for="q2b">B. O(log n)</label><br>
+            <input type="radio" id="q2c" name="question2" value="c">
+            <label for="q2c">C. O(1)</label><br>
+            <input type="radio" id="q2d" name="question2" value="d">
+            <label for="q2d">D. O(n^2)</label><br>
+            <span id="answer2" class="text-success font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+            <label for="question3">3. Which data structure uses Last-In-First-Out (LIFO) order?</label><br>
+            <input type="radio" id="q3a" name="question3" value="a">
+            <label for="q3a">A. Queue</label><br>
+            <input type="radio" id="q3b" name="question3" value="b">
+            <label for="q3b">B. Stack</label><br>
+            <input type="radio" id="q3c" name="question3" value="c">
+            <label for="q3c">C. Heap</label><br>
+            <input type="radio" id="q3d" name="question3" value="d">
+            <label for="q3d">D. Linked List</label><br>
+            <span id="answer3" class="text-success font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+            <label for="question4">4. Which sorting algorithm has the best time complexity for average cases?</label><br>
+            <input type="radio" id="q4a" name="question4" value="a">
+            <label for="q4a">A. Selection Sort</label><br>
+            <input type="radio" id="q4b" name="question4" value="b">
+            <label for="q4b">B. Bubble Sort</label><br>
+            <input type="radio" id="q4c" name="question4" value="c">
+            <label for="q4c">C. Merge Sort</label><br>
+            <input type="radio" id="q4d" name="question4" value="d">
+            <label for="q4d">D. Insertion Sort</label><br>
+            <span id="answer4" class="text-success font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+            <label for="question5">5. What is the main advantage of using a binary search tree?</label><br>
+            <input type="radio" id="q5a" name="question5" value="a">
+            <label for="q5a">A. Constant time complexity</label><br>
+            <input type="radio" id="q5b" name="question5" value="b">
+            <label for="q5b">B. Linear search capability</label><br>
+            <input type="radio" id="q5c" name="question5" value="c">
+            <label for="q5c">C. Efficient searching, insertion, and deletion</label><br>
+            <input type="radio" id="q5d" name="question5" value="d">
+            <label for="q5d">D. None of the above</label><br>
+            <span id="answer5" class="text-success font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+            <label for="question6">6. What is the purpose of a hash table?</label><br>
+            <input type="radio" id="q6a" name="question6" value="a">
+            <label for="q6a">A. Sorting elements</label><br>
+            <input type="radio" id="q6b" name="question6" value="b">
+            <label for="q6b">B. Searching elements in sorted order</label><br>
+            <input type="radio" id="q6c" name="question6" value="c">
+            <label for="q6c">C. Hashing elements for quick access</label><br>
+            <input type="radio" id="q6d" name="question6" value="d">
+            <label for="q6d">D. Storing elements in a binary tree</label><br>
+            <span id="answer6" class="text-success font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+            <label for="question7">7. Which data structure is used to implement priority queues?</label><br>
+            <input type="radio" id="q7a" name="question7" value="a">
+            <label for="q7a">A. Linked List</label><br>
+            <input type="radio" id="q7b" name="question7" value="b">
+            <label for="q7b">B. Stack</label><br>
+            <input type="radio" id="q7c" name="question7" value="c">
+            <label for="q7c">C. Binary Search Tree</label><br>
+            <input type="radio" id="q7d" name="question7" value="d">
+            <label for="q7d">D. Heap</label><br>
+            <span id="answer7" class="text-success font-weight-bold"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary ml-2">Reset</button>
+    </form>
+    <div id="timer"></div>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Include MediaRecorder polyfill for cross-browser compatibility -->
+<script src="https://cdn.jsdelivr.net/npm/@extend-chrome/mic-recorder-polyfill"></script>
+<script>
+    // Declare variables for video recording
+    let mediaRecorder;
+    let recordedChunks = [];
+
+    // Function to start video recording
+    function startRecording() {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(function (stream) {
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.ondataavailable = function (e) {
+                    recordedChunks.push(e.data);
+                };
+                mediaRecorder.start();
+            })
+            .catch(function (err) {
+                console.error('Error accessing media devices:', err);
+            });
+    }
+
+    // JavaScript to handle form submission
+    $('#dsaQuizForm').submit(function(e) {
+        e.preventDefault(); // Prevent form submission
+        // Stop video recording
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+            mediaRecorder.stop();
+            mediaRecorder.onstop = function () {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                const downloadLink = document.createElement('a');
+                downloadLink.href = url;
+                downloadLink.download = 'quiz_video.webm';
+                downloadLink.click();
+                URL.revokeObjectURL(url);
+                recordedChunks = [];
+            };
+        }
+        // Collect selected answers
+        let answers = {};
+        $('input[type=radio]:checked').each(function() {
+            answers[$(this).attr('name')] = $(this).val();
+        });
+        // Show answers in console (you can modify this part as needed)
+        console.log('Submitted Answers:', answers);
+        // Display correct answers
+        showCorrectAnswers(answers);
+    });
+
+    // JavaScript to handle form reset
+    $('#dsaQuizForm').on('reset', function() {
+        // Clear selected answers
+        $('input[type=radio]:checked').prop('checked', false);
+        // Clear displayed correct answers
+        $('.text-success').text('');
+    });
+
+    // Function to show correct answers
+    function showCorrectAnswers(answers) {
+        const correctAnswers = {
+            question1: 'b', // Correct answer for question 1
+            question2: 'a', // Correct answer for question 2
+            question3: 'b', // Correct answer for question 3
+            question4: 'c', // Correct answer for question 4
+            question5: 'c', // Correct answer for question 5
+            question6: 'c', // Correct answer for question 6
+            question7: 'd', // Correct answer for question 7
+        };
+        $.each(answers, function(question, answer) {
+            const correctAnswer = correctAnswers[question];
+            if (answer === correctAnswer) {
+                $(`#answer${question.slice(-1)}`).text(' (Correct)');
+            } else {
+                $(`#answer${question.slice(-1)}`).text(` (Correct answer: ${correctAnswer.toUpperCase()})`);
+            }
+        });
+    }
+
+    // Timer function
+    const timerElement = document.getElementById('timer');
+    let timerDuration = 11 * 60; // 11 minutes in seconds
+
+    function updateTimer() {
+        const minutes = Math.floor(timerDuration / 60);
+        const seconds = timerDuration % 60;
+        timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        if (timerDuration > 0) {
+            timerDuration--;
+            setTimeout(updateTimer, 1000);
+        } else {
+            alert('Time Up! Quiz has ended.');
+            $('#dsaQuizForm').submit(); // Automatically submit the form when time is up
+        }
+    }
+
+    // Function to handle logout
+    function logout() {
+        // Perform logout actions here (e.g., redirect to login page)
+        alert('Logged out successfully!');
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+
+    // Start the timer
+    updateTimer();
+</script>
+</body>
+</html>

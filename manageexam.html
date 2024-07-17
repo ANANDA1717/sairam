@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Management</title>
+<!-- Add Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image:url("whitecolor.jpg");
+    }
+   
+    .content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+
+    .form-container {
+        display: none; /* Hide the form initially */
+    }
+
+    /* Adjust table styles and other styles */
+    /* Your existing CSS styles here */
+
+    /* New style for the Generate Question Paper button */
+    .btn-generate {
+        background-color: #f39c12;
+        color: white;
+        border: none;
+    }
+    .btn-generate:hover {
+        background-color: #d35400;
+    }
+
+    /* Style for the Add More Questions button */
+    .btn-add-more {
+        background-color: #3498db;
+        color: white;
+        border: none;
+    }
+    .btn-add-more:hover {
+        background-color: #2980b9;
+    }
+  .sidebar {
+        width: 17%;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        background-color: #210f6c; /* Dark purple background */
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #210f6c;
+    }
+
+    /* Center align the heading */
+    .wordart {
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="homepage.html">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="facultydashboardd.html">FACULTY</a></li>
+        
+    </div>
+
+
+    <!-- Page Content -->
+    <div class="content">
+        <h1 class="wordart">CREATE EXAMS</h1>
+        <!-- Your existing content here -->
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="examTable" class="table table-striped table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Exam Title</th>
+                            <th>Course</th>
+                            <th>Description</th>
+                            <th>Time Limit</th>
+                            <th>Display Limit</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DSA</td>
+                            <td>MCA</td>
+                            <td>TEST ON DSA</td>
+                            <td>60 minutes</td>
+                            <td>30 minutes</td>
+                            <td>
+                                <button onclick="openForm('Exam 1')" class="btn btn-manage">Manage</button>
+                                <button onclick="deleteExam(this)" class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <!-- Add more exam rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add a content card for displaying questions -->
+        <div class="card" id="questionsCard" style="display: none;">
+            <div class="card-body">
+                <h2>Question List</h2>
+                <div id="questionList"></div>
+                <!-- Add the Generate Question Paper button -->
+                <button onclick="generateQuestionPaper()" class="btn btn-generate">Generate Question Paper</button>
+            </div>
+        </div>
+        
+        <div class="card form-container" id="addQuestionsForm" style="display: none;">
+            <div class="card-body">
+                <h2>Add Questions</h2>
+                <form onsubmit="addQuestion(event)">
+                    <div class="form-group">
+                        <label for="questionName">Question Name:</label>
+                        <input type="text" class="form-control" id="questionName" name="questionName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="optionA">Option A:</label>
+                        <input type="text" class="form-control" id="optionA" name="optionA" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="optionB">Option B:</label>
+                        <input type="text" class="form-control" id="optionB" name="optionB" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="optionC">Option C:</label>
+                        <input type="text" class="form-control" id="optionC" name="optionC" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="optionD">Option D:</label>
+                        <input type="text" class="form-control" id="optionD" name="optionD" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correctAnswer">Correct Answer:</label>
+                        <select class="form-control" id="correctAnswer" name="correctAnswer" required>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <!-- Add button for adding more questions -->
+                    <button type="button" onclick="addMoreQuestions()" class="btn btn-add-more">Add More Questions</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS for functionality -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Add Textillate.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.wordart').textillate({
+                in: { effect: 'tada' }, // Animation effect when text appears
+                out: { effect: 'fadeOut' }, // Animation effect when text disappears
+                loop: true // Loop the animation
+            });
+        });
+
+        function openForm(examTitle) {
+            var form = document.getElementById('addQuestionsForm');
+            form.style.display = 'block';
+            // Set exam title in the form
+            document.getElementById('examTitle').value = examTitle;
+        }
+
+        function deleteExam(btn) {
+            var confirmation = confirm("Are you sure you want to delete this exam?");
+            if (confirmation) {
+                var row = btn.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+                alert('Exam deleted successfully.');
+            }
+        }
+
+        function addQuestion(event) {
+            event.preventDefault(); // Prevent form submission
+            var questionName = document.getElementById('questionName').value;
+            var optionA = document.getElementById('optionA').value;
+            var optionB = document.getElementById('optionB').value;
+            var optionC = document.getElementById('optionC').value;
+            var optionD = document.getElementById('optionD').value;
+            var correctAnswer = document.getElementById('correctAnswer').value;
+
+            // Create new question element
+            var newQuestion = document.createElement('div');
+            newQuestion.innerHTML = `
+                <h4>${questionName}</h4>
+                <ul>
+                    <li>A) ${optionA}</li>
+                    <li>B) ${optionB}</li>
+                    <li>C) ${optionC}</li>
+                    <li>D) ${optionD}</li>
+                </ul>
+                <p>Correct Answer: ${correctAnswer}</p>
+            `;
+
+            // Append new question to question list
+            var questionList = document.getElementById('questionList');
+            questionList.appendChild(newQuestion);
+
+            // Show the questions card
+            document.getElementById('questionsCard').style.display = 'block';
+
+            // Clear form fields after submission
+            document.getElementById('questionName').value = '';
+            document.getElementById('optionA').value = '';
+            document.getElementById('optionB').value = '';
+            document.getElementById('optionC').value = '';
+            document.getElementById('optionD').value = '';
+            document.getElementById('correctAnswer').value = 'A'; // Reset correct answer to default
+        }
+
+        // Function to generate question paper
+        function generateQuestionPaper() {
+            // Get the question list content
+            var questionListContent = document.getElementById('questionList').innerHTML;
+
+            // Check if there are questions to generate the paper
+            if (questionListContent.trim() !== '') {
+                // Open a new window with the question paper content
+                var questionPaperWindow = window.open('', '_blank');
+                questionPaperWindow.document.write('<html><head><title>Question Paper</title></head><body>');
+                questionPaperWindow.document.write('<h1>Question Paper</h1>');
+                questionPaperWindow.document.write(questionListContent); // Write the question list content
+                questionPaperWindow.document.write('</body></html>');
+                questionPaperWindow.document.close();
+            } else {
+                alert('No questions available to generate the question paper.');
+            }
+        }
+
+        // Function to add more questions
+        function addMoreQuestions() {
+            var form = document.getElementById('addQuestionsForm');
+            form.style.display = 'block';
+            // Clear form fields for adding new questions
+            document.getElementById('questionName').value = '';
+            document.getElementById('optionA').value = '';
+            document.getElementById('optionB').value = '';
+            document.getElementById('optionC').value = '';
+            document.getElementById('optionD').value = '';
+            document.getElementById('correctAnswer').value = 'A'; // Reset correct answer to default
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Results</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  canvas {
+    margin-top: 20px;
+  }
+h1 {
+  padding: 17px;
+  margin-top: 0;
+  color: transparent; /* Make the text color transparent */
+  text-fill-color: orange; /* Set the text fill color */
+  -webkit-text-stroke: 2px blue; /* Add a blue text stroke */
+  text-shadow: 2px 2px 4px rgba(0, 0, 255, 0.5); /* Add a blue text shadow */
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-clip: text; /* Clip the background to the text */
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>RESULTS</h1>
+    <p>Name: Alice</p>
+    <p>Roll No: 123</p>
+    <p>Class: MCA(2ND YEAR)</p>
+    <div id="resultsChart"></div>
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="resultsBody">
+        <!-- Student results will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Student data for three subjects
+      const subjects = ['Math', 'Science', 'History'];
+      const scores = [85, 90, 78];
+      const colors = ['#3F51B5', '#009688', '#FF5722']; // Different colors for each subject
+
+      // Display student details
+      const studentName = 'Alice';
+      const rollNo = '123';
+      const studentClass = 'X';
+      document.querySelector('p:nth-of-type(1)').textContent += studentName;
+      document.querySelector('p:nth-of-type(2)').textContent += rollNo;
+      document.querySelector('p:nth-of-type(3)').textContent += studentClass;
+
+      // Display student results in the table
+      const resultsBody = document.getElementById('resultsBody');
+      subjects.forEach((subject, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${subject}</td>
+          <td>${scores[index]}</td>
+        `;
+        resultsBody.appendChild(row);
+      });
+
+      // Create a chart using ApexCharts for the student with three subjects
+      const options = {
+        chart: {
+          type: 'bar',
+          height: 350,
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+          },
+        },
+        colors: colors,
+        series: [{
+          name: 'Scores',
+          data: scores,
+        }],
+        xaxis: {
+          categories: subjects,
+        },
+        yaxis: {
+          title: {
+            text: 'Scores',
+          },
+          max: 100,
+        },
+      };
+
+      const resultsChart = new ApexCharts(document.getElementById('resultsChart'), options);
+      resultsChart.render();
+    });
+  </script>
+</body>
+</html>

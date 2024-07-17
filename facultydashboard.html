@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty Dashboard</title>
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .sidebar {
+        width: 17%;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        background-color: #210f6c;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #210f6c;
+    }
+    /* Added styles to move content away from the sidebar */
+    .main-content {
+        margin-left: 17%; /* Same as sidebar width */
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="facultyprofile.html">PROFILE</a></li>
+        <li class="nav-item"><a class="nav-link" href="myexams.html">MY EXAMS</a></li>
+        <li class="nav-item"><a class="nav-link" href="examresults.html">EXAM RESULTS</a></li>
+        <li class="nav-item"><a class="nav-link" href="settings.html">SETTINGS</a></li>
+    </ul>
+</div>
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome, Faculty</h5>
+                        <p class="card-text">View your profile details and update information.</p>
+                        <a href="facultyprofile.html" class="btn btn-primary">My Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">My Exams</h5>
+                        <p class="card-text">View and manage exams assigned to you.</p>
+                        <a href="createexams.html" class="btn btn-primary">Create Exams</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Exam Results</h5>
+                        <p class="card-text">Access and analyze exam results for your current exam.</p>
+                        <a href="reportanalysis.html" class="btn btn-primary">View Exam Report for the class</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

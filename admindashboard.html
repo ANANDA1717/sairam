@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .sidebar {
+        width: 17%;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        background-color: #210f6c;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #210f6c;
+    }
+    /* Added styles to move content away from the sidebar */
+    .main-content {
+        margin-left: 17%; /* Same as sidebar width */
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="users.html">USERS</a></li>
+        <li class="nav-item"><a class="nav-link" href="exams.html">EXAMS</a></li>
+        <li class="nav-item"><a class="nav-link" href="results.html">RESULTS</a></li>
+        <li class="nav-item"><a class="nav-link" href="settings.html">SETTINGS</a></li>
+    </ul>
+</div>
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome, Admin</h5>
+                        <p class="card-text">Manage users, exams, results, and settings.</p>
+                        <a href="adminprofiling.html" class="btn btn-primary">Admin profile</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Exam Management</h5>
+                        <p class="card-text">Schedule and manage exams.</p>
+                        <a href="examshedule.html" class="btn btn-primary">Manage Exams</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Result Management</h5>
+                        <p class="card-text">View and manage exam results.</p>
+                        <a href="#" class="btn btn-primary">Manage Results</a>
+                    </div>
+                </div>
+            </div>
+           
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

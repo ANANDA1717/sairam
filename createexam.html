@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create New Exam</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+       background-image: url("bluebackground.jpg")
+   }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+h1 {
+  padding: 17px;
+  margin-top: 0;
+  color: orange;
+  text-shadow: 2px 2px 4px rgba(0, 0, 255, 0.5); /* Changed text shadow color to blue (rgba(0, 0, 255, 0.5)) */
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Create New Exam</h1>
+    <form id="examForm">
+        <div class="form-group">
+            <label for="examTitle">Exam Title:</label>
+            <input type="text" id="examTitle" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="examDuration">Exam Duration (minutes):</label>
+            <input type="number" id="examDuration" class="form-control" required>
+        </div>
+        <div id="questionsContainer"></div>
+        <button type="button" class="btn btn-primary" onclick="addQuestion()">Add Question</button>
+        <button type="submit" class="btn btn-success">Create Exam</button>
+    </form>
+</div>
+
+<script>
+    let questionCount = 1;
+
+    function addQuestion() {
+        const questionsContainer = document.getElementById('questionsContainer');
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('form-group');
+        questionDiv.innerHTML = `
+            <label for="question${questionCount}">Question ${questionCount}:</label>
+            <input type="text" id="question${questionCount}" class="form-control" required>
+        `;
+        questionsContainer.appendChild(questionDiv);
+        questionCount++;
+    }
+
+    document.getElementById('examForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const examTitle = document.getElementById('examTitle').value;
+        const examDuration = document.getElementById('examDuration').value;
+        const questions = [];
+        for (let i = 1; i < questionCount; i++) {
+            const question = document.getElementById('question' + i).value;
+            questions.push(question);
+        }
+        const examData = {
+            title: examTitle,
+            duration: examDuration,
+            questions: questions
+        };
+        console.log('Exam Data:', examData);
+        // Here you would send examData to the server using AJAX or fetch
+        // For demonstration, we'll assume the exam is created successfully
+        // Redirect the user to a new page (exam_created.html)
+        window.location.href = 'exam_created.html'; // Change the URL as needed
+    });
+</script>
+</body>
+</html>

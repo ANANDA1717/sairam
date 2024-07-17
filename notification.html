@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Cards with Bootstrap</title>
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        background-image:url("block.jpg"); /* Light gray background */
+    }
+
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .sidebar {
+        width: 17%;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        background-color: #210f6c; /* Dark purple background */
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #210f6c;
+    }
+    /* Added styles to move content away from the sidebar */
+    .main-content {
+        margin-left: 17%; /* Same as sidebar width */
+        padding: 20px;
+    }
+
+    /* Different background colors for cards */
+    .card.math {
+        background-color: #e9ecef; /* Light gray */
+    }
+
+    .card.science {
+        background-color: #ffc107; /* Yellow */
+    }
+
+    .card.history {
+        background-color: #17a2b8; /* Teal */
+    }
+
+    /* Additional styles for card text color */
+    .card-title,
+    .card-text {
+        color: #000; /* Black text */
+    }
+
+    /* Added styles for the notification */
+    .notification {
+        margin-top: 20px;
+        display: none; /* Initially hide the notification */
+    }
+</style>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li class="nav-item"><a class="nav-link" href="homepage.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="loginexam.html">LOGIN</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">USER DASHBOARD</a></li>
+        <li class="nav-item"><a class="nav-link" href="faqs.html">FAQS</a></li>
+    </ul>
+</div>
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card math">
+                    <div class="card-body">
+                        <h5 class="card-title">USER PROFILE</h5>
+                        <p class="card-text">click to create the user profile: </p>
+                        <a href="userprofile.html" class="btn btn-primary">Create User Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card science">
+                    <div class="card-body">
+                        <h5 class="card-title">TAKE A TEST</h5>
+                        <p class="card-text"> Click to take following test</p>
+                        <a href="instuctions.html" class="btn btn-primary">Take Test</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card history">
+                    <div class="card-body">
+                        <h5 class="card-title">FEEDBACK</h5>
+                        <p class="card-text">Click on the following to give a feedback</p>
+                        <a href="contactus.html" class="btn btn-primary">Give Feedback</a>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+    <!-- Add the following div for notifications -->
+    <div class="notification alert alert-success">
+        Welcome to User Dashboard! You have new notifications.
+    </div>
+    <!-- Short form for message -->
+    <form id="messageForm">
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <input type="text" class="form-control" id="message" placeholder="Enter your message">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show the notification after the page is fully loaded
+        document.querySelector('.notification').style.display = 'block';
+
+        // Handle form submission
+        document.getElementById('messageForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the message value from the form
+            const message = document.getElementById('message').value;
+
+            // Display an alert notification with the message
+            alert('Your message: ' + message);
+        });
+    });
+</script>
+</body>
+</html>

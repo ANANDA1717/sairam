@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("graphic.jpg");
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-img {
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+}
+
+.form-container {
+    width: 500px;
+    padding: 16px;
+    background-color: white;
+    margin-bottom: 100px;
+    box-shadow: 0px 0px 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+label{
+    margin-left: 27px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid rgb(224, 220, 229);
+    border-radius: 5px;
+    color: rgb(95, 22, 184);
+    box-shadow: 0 0 10px rgb(137, 190, 217);
+    
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover {
+    border: 3px solid rgb(224, 220, 229);
+    box-shadow: 0 0 10px rgb(66, 132, 165);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border: 3px solid rgb(224, 220, 229);
+    box-shadow: 0 0 10px  rgb(66, 132, 165);
+    outline: none;
+}
+
+::placeholder {
+    color: rgb(92, 25, 164);
+    font-weight: bold;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    border: 3px solid rgb(92, 25, 164);
+    background-color:rgb(105, 66, 147); ;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(71, 12, 134); 
+    color: white;
+   
+}
+ul{
+list-style-type:none;
+margin:10;
+overflow:hidden;
+padding:0;
+position:sticky;
+position:-webkit-sticky;
+background-color:#333;
+top:0;
+opacity:1;
+z-index:1;
+}
+li{
+float:left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 11px 11px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+li a:hover{
+ background-color:#4caf8c;
+}
+
+.active{
+    background-color:#79b7a1;
+}
+h1 {
+  color: rgb(97, 16, 173);
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="bg-img">
+    <ul>
+        <li><a href = "homepage.html" >HOME</a></li>
+        <li><a href = "userdashboard.html">USER_DASHBOARD</a></li>
+        <li><a href = "contactus.html" class = "active">FEEDBACK</a></li>
+        <li><a href = "faqs.html">FAQS</a></li>
+        <li><a href = "loginexam.html">LOGIN</a></li>
+         
+        </ul>
+    <div class="form-container">
+        <h1>FEEDBACK FORM</h1>
+        <form action="contactus.php" method="post">
+            <div class="form-group">
+              
+                <input type="text" class="form-control" placeholder=" #Name" name="cname" required>
+            </div>
+            <div class="form-group">
+            
+                <input type="email" class="form-control" placeholder="#Email" name="cemail" required>
+            </div>
+            <div class="form-group">
+            
+                <input type="text" class="form-control" placeholder="#Mobile" name="cmobile" required>
+            </div>
+            <div class="form-group">
+                
+                <input type="text" class="form-control" placeholder="#Message" name="cmsg" required>
+            </div>
+            <input type="submit" value="SUBMIT">
+        </form>
+    </div>
+</div>
+</body>
+</html>

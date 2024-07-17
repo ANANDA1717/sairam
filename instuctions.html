@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Instructions</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      padding: 20px;
+      background-image: url("C:/Users/ananda/Downloads/whiteabstract.jpg");
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root" class="container"></div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- React and ReactDOM from CDN -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- Custom JavaScript and React code -->
+  <script type="text/babel">
+    const Instructions = () => {
+      const startExam = () => {
+        // Redirect to exam interface or start exam logic
+        alert('Exam started!');
+        // Example: window.location.href = 'dsaquestionpaper1.html';
+      };
+
+      return (
+        <div>
+          <h1 class="mt-4 mb-4">Exam Instructions</h1>
+          <div class="alert alert-info">
+            <h4 class="alert-heading">Instructions:</h4>
+            <ul>
+              <li>This exam consists of <strong>30 multiple-choice questions</strong> with a total duration of <strong>60 minutes</strong>.</li>
+              <li>Each question has <strong>4 options</strong>, out of which <strong>only one is correct</strong>.</li>
+              <li>You must answer all questions within the allotted time.</li>
+              <li>You can navigate between questions using the <strong>Next</strong> and <strong>Previous</strong> buttons.</li>
+              <li>Questions marked for review will be shown separately for easy revision.</li>
+              <li>Once you submit the exam, you cannot make any changes.</li>
+              <li>Ensure a stable internet connection throughout the exam.</li>
+              <li>Good luck!</li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary" onClick={startExam}>Start Exam</button>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Instructions />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

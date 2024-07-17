@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("cartwheel.jpg");
+    }
+    ul {
+        list-style-type: none;
+        margin: 10px;
+        overflow: hidden;
+        padding: 0;
+        position: sticky;
+        position: -webkit-sticky;
+        background-color: #333;
+        top: 0;
+        opacity: 1;
+        z-index: 1;
+    }
+    li {
+        float: left;
+    }
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 11px 11px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    li a:hover {
+        background-color: #4caf8c;
+    }
+    .active {
+        background-color: rgb(0, 255, 106);
+    }
+    .container {
+        width: 450px;
+        padding: 17px;
+        background-color: rgba(234, 238, 239, 0.8); /* Semi-transparent background */
+        margin-bottom: 100px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 15px;
+        backdrop-filter: blur(11);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: orange; /* Orange color */
+        text-shadow: 1px 1px 2px black, 0 0 25px rgb(64, 30, 188), 0 0 5px rgb(117, 28, 180);
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: orange; /* Orange color */
+        text-shadow: 1px 1px 2px black, 0 0 25px rgb(64, 30, 188), 0 0 5px rgb(117, 28, 180);
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: orange;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #FF7F00;
+    }
+    .fa-input::placeholder {
+        color: rgba(0, 0, 0, 0.5); /* Placeholder text color */
+        font-family: 'Font Awesome 5 Free'; /* Specify Font Awesome font family */
+        padding-left: 1em; /* Adjust as needed for icon alignment */
+    }
+</style>
+</head>
+<body>
+    <ul>
+        <li><a href="homepage.html">HOME</a></li>
+        <li><a href="loginexam.html" class="active">USER_LOGIN</a></li>
+        <li><a href="faqs.html">FAQS</a></li>
+        <li><a href="registrationtask.html">REGISTRATION</a></li>
+    </ul>
+    <div class="container">
+        <h1>USER_LOGIN</h1>
+        <form id="loginForm" action="logintask.php" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="uname" id="uname" placeholder="&#xf007; Enter Username" class="fa-input">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="upassword" id="upassword" placeholder="&#xf023"; Enter Password" class="fa-input">
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+            const form = document.getElementById("loginForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting by default
+
+            const usernameInput = document.getElementById("uname");
+            const passwordInput = document.getElementById("upassword");
+
+            if (!usernameInput.checkValidity()) {
+                // Username input is invalid
+                document.getElementById("unameError").textContent = usernameInput.validationMessage;
+                document.getElementById("unameError").style.display = "block";
+                return false; // Return false to prevent form submission
+            }
+
+            if (!passwordInput.checkValidity()) {
+                // Password input is invalid
+                document.getElementById("passwordError").textContent = passwordInput.validationMessage;
+                document.getElementById("passwordError").style.display = "block";
+                return false; // Return false to prevent form submission
+            }
+
+            // Get the username and password values
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            // You can implement your authentication logic here
+            // For demonstration purposes, let's check if the username is "admin" and password is "password"
+            if (username === "admin" && password === "password") {
+                alert("Login successful!");
+                // Redirect to the dashboard or home page
+                window.location.href = "userdashboard.html";
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
+        
+

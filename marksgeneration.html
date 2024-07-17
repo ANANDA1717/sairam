@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subject Marks Bar Graph</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<style>
+    /* Custom CSS for styling */
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .sidebar {
+        width: 17%;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        background-color: #210f6c; /* Dark purple background */
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #210f6c;
+    }
+    /* Added styles to move content away from the sidebar */
+    .main-content {
+        margin-left: 17%; /* Same as sidebar width */
+        padding: 20px;
+        background-image:url("whitetexture.jpg");
+    }
+
+    .graph-container {
+        margin-top: 20px;
+    }
+
+    .header-info {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 sidebar">
+            <ul><a href = "facultydashboardd.html">FACULTY DASHBOARD</a></ul>
+            <ul><a href = "homepage.html">LOGOUT</a></ul>
+        </div>
+        <div class="col-9 main-content">
+            <div class="header-info">
+                <div class="form-group">
+                    <label for="studentName">Name:</label>
+                    <input type="text" class="form-control" id="studentName">
+                </div>
+                <div class="form-group">
+                    <label for="rollNo">Roll No.:</label>
+                    <input type="text" class="form-control" id="rollNo">
+                </div>
+                <button id="submitInfo" class="btn btn-primary mt-2">Submit</button>
+            </div>
+
+            <!-- Button to trigger modal -->
+            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#marksModal">
+                Open Marks Entry Form
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="marksModal" tabindex="-1" role="dialog" aria-labelledby="marksModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="marksModalLabel">Enter Subject Marks</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="marksForm">
+                                <div class="form-group">
+                                    <label for="subject1">Subject 1 Name</label>
+                                    <input type="text" class="form-control" id="subject1" required>
+                                    <label for="marks1">Marks</label>
+                                    <input type="number" class="form-control" id="marks1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject2">Subject 2 Name</label>
+                                    <input type="text" class="form-control" id="subject2" required>
+                                    <label for="marks2">Marks</label>
+                                    <input type="number" class="form-control" id="marks2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject3">Subject 3 Name</label>
+                                    <input type="text" class="form-control" id="subject3" required>
+                                    <label for="marks3">Marks</label>
+                                    <input type="number" class="form-control" id="marks3" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject4">Subject 4 Name</label>
+                                    <input type="text" class="form-control" id="subject4" required>
+                                    <label for="marks4">Marks</label>
+                                    <input type="number" class="form-control" id="marks4" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject5">Subject 5 Name</label>
+                                    <input type="text" class="form-control" id="subject5" required>
+                                    <label for="marks5">Marks</label>
+                                    <input type="number" class="form-control" id="marks5" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Generate Bar Graph</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="graph-container mt-3">
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // JavaScript for handling form submission and generating bar graph using ApexCharts
+    document.getElementById('submitInfo').addEventListener('click', function() {
+        var studentName = document.getElementById('studentName').value;
+        var rollNo = document.getElementById('rollNo').value;
+
+        document.getElementById('studentInfo').innerHTML = '<strong>Name:</strong> ' + studentName + ' | <strong>Roll No.:</strong> ' + rollNo;
+    });
+
+    document.getElementById('marksForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var studentName = document.getElementById('studentName').value;
+        var rollNo = document.getElementById('rollNo').value;
+
+        var subjectNames = [];
+        var marks = [];
+
+        for (var i = 1; i <= 5; i++) {
+            subjectNames.push(document.getElementById('subject' + i).value);
+            marks.push(parseInt(document.getElementById('marks' + i).value));
+        }
+
+        generateBarGraph(subjectNames, marks, studentName, rollNo);
+    });
+
+    function generateBarGraph(subjects, marks, studentName, rollNo) {
+        var options = {
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            series: [{
+                name: 'Marks',
+                data: marks
+            }],
+            xaxis: {
+                categories: subjects
+            },
+            title: {
+                text: 'Subject Marks Bar Graph'
+            },
+            subtitle: {
+                text: 'Student: ' + studentName + ' | Roll No.: ' + rollNo
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            colors: [
+                '#6ab04c'
+            ],
+            grid: {
+                borderColor: '#f1f1f1',
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+        // Download chart as PNG
+        document.getElementById('downloadChart').addEventListener('click', function() {
+            chart.dataURI().then(function(uri) {
+                var downloadLink = document.createElement('a');
+                downloadLink.href = uri;
+                downloadLink.download = 'subject_marks_chart.png';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

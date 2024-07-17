@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Data</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Light orange background color */
+}
+
+.container {
+  display: flex;
+  background-color: #f0f0f0; /* Light shade background color */
+}
+
+.sidebar {
+        width: 17%;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        background-color: #210f6c; /* Dark purple background */
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+    .sidebar a:hover {
+        background-color: #210f6c;
+    }
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 250px; /* Keep space for sidebar */
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.chart {
+  width: 45%;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart.orange {
+  background-color: orange;
+}
+
+.chart.blue {
+  background-color: blue;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  width: 80%; /* Adjusted width for responsiveness */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="sidebar">
+   <ul> <a href="#"><i class="fas fa-chart-pie"></i> Overview</a></ul>
+   <ul> <a href="#"><i class="fas fa-user"></i> Students</a></ul>
+   <ul> <a href="#"><i class="fas fa-cogs"></i> Settings</a></ul>
+  </div>
+  <div class="content">
+    <h1>Student Data</h1>
+    <div class="card">
+      <h2>Student Charts</h2>
+      <div class="chart-container">
+        <div id="presentAbsentChart" class="chart orange"></div>
+        <div id="passedFailedChart" class="chart blue"></div>
+      </div>
+      <button onclick="openModal()" class="btn btn-primary mt-3">Enter Student Data</button>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Enter Student Data</h2>
+    <form id="studentForm" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label for="present"><i class="fas fa-user"></i> Number of Students Present:</label>
+        <input type="number" class="form-control" id="present" name="present" required>
+        <div class="invalid-feedback">Please enter valid numbers.</div>
+      </div>
+      <div class="form-group">
+        <label for="absent"><i class="fas fa-user-times"></i> Number of Students Absent:</label>
+        <input type="number" class="form-control" id="absent" name="absent" required>
+        <div class="invalid-feedback">Please enter valid numbers.</div>
+      </div>
+      <div class="form-group">
+        <label for="passed"><i class="fas fa-check"></i> Number of Students Passed:</label>
+        <input type="number" class="form-control" id="passed" name="passed" required>
+        <div class="invalid-feedback">Please enter valid numbers.</div>
+      </div>
+      <div class="form-group">
+        <label for="failed"><i class="fas fa-times"></i> Number of Students Failed:</label>
+        <input type="number" class="form-control" id="failed" name="failed" required>
+        <div class="invalid-feedback">Please enter valid numbers.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Generate Pie Charts</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  function openModal() {
+    document.getElementById('myModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  document.getElementById('studentForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    event.stopPropagation(); // Stop event propagation to Bootstrap
+
+    const form = document.getElementById('studentForm');
+    if (form.checkValidity() === false) {
+      form.classList.add('was-validated');
+      return;
+    }
+
+    const present = parseInt(document.getElementById('present').value);
+    const absent = parseInt(document.getElementById('absent').value);
+    const passed = parseInt(document.getElementById('passed').value);
+    const failed = parseInt(document.getElementById('failed').value);
+
+    const presentAbsentData = [['Present', present], ['Absent', absent]];
+    const passedFailedData = [['Passed', passed], ['Failed', failed]];
+
+    generatePieChart('presentAbsentChart', 'Students Present vs Absent', presentAbsentData, 'orange');
+    generatePieChart('passedFailedChart', 'Students Passed vs Failed', passedFailedData, 'blue');
+
+    closeModal(); // Close modal after form submission
+  });
+
+  function generatePieChart(containerId, title, data, color) {
+    const container = document.getElementById(containerId);
+
+    const chart = new Highcharts.Chart({
+      chart: {
+        renderTo: containerId,
+        type: 'pie',
+        backgroundColor: color || 'transparent' // Set background color
+      },
+      title: {
+        text: title
+      },
+      series: [{
+        data: data
+      }]
+    });
+  }
+</script>
+
+</body>
+</html>
+
